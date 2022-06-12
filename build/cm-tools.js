@@ -255,7 +255,11 @@ CM.prototype.ftos = function (frequency) {
  */
 
 CM.prototype.interpolate = function (start, end, position) {
-  return (1 - position) * start + position * end;
+  var integer = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+
+  var output = (1 - position) * start + position * end;
+  output = integer ? Math.floor(output) : output;
+  return output;
 };
 "use strict";
 

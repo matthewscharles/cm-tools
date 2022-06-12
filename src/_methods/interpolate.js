@@ -6,6 +6,8 @@
  * @returns {number}
  */
 
-CM.prototype.interpolate = function(start, end, position) {
-    return ((1 - position) * start) + (position * end);
+CM.prototype.interpolate = function(start, end, position, integer = false) {
+    let output = ((1 - position) * start) + (position * end);
+    output = integer ? Math.floor(output) : output;
+    return output;
 }
