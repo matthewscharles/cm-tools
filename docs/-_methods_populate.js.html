@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: _methods/populate.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,31 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: _methods/populate.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * 
+ * @param menu 
+ * @param items 
+ * @param selected 
+ * @param type 
+ */
 
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+CM.prototype.populate = function(menu, items, selected=false, type='option'){
+    items.forEach((x)=>{
+        let item = menu.appendChild(this.create(type,{value:x,innerHTML:x}))
+        if(selected!=false)menu.value=selected
+    })
+}</code></pre>
+        </article>
+    </section>
 
 
 

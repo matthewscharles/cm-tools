@@ -3,7 +3,7 @@
  * @param {number} x 
  * @param {number} y 
  * @param {object<string,number>} values 
- * @returns 
+ * @returns {boolean}
  */
 
 CM.prototype.within = function(x=0, y=0, values={left:0,right:0,top:0, bottom:0}){

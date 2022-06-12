@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: _methods/constrain.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,29 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: _methods/constrain.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Constrain within range
+ * @param {number} value 
+ * @param {number} min 
+ * @param {number} max 
+ * @returns {number} constrained value
+ */
 
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+CM.prototype.constrain = function(value, min, max, integer = false){
+    value = integer ? Math.floor(value) : value;
+    return value > max ? max : value &lt; min ? min : value;
+}</code></pre>
+        </article>
+    </section>
 
 
 

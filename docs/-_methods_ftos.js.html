@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: _methods/ftos.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,28 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: _methods/ftos.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * **F**requency **To** **S**tring
+ * @param {number} freq - Frequency in HZ
+ * @param {number} transpose - offset in semitones
+ * @returns {string} Pitch as scientific notation
+ */
 
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+CM.prototype.ftos = function(frequency, transpose = 0){
+    sym = Tone.Frequency(frequency).transpose(transpose)
+    return Tone.Frequency(frequency).toNote()
+}</code></pre>
+        </article>
+    </section>
 
 
 
