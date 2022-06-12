@@ -13,10 +13,6 @@ var CM = function CM() {};
 CM.prototype = {};
 CM.prototype.constructor = CM;
 
-function interpolate(a, b, n) {
-  return (1 - n) * a + n * b;
-}
-
 function notify() {
   if (settings.verbose) {
     var message = '';
@@ -257,6 +253,7 @@ CM.prototype.ftos = function (frequency) {
 CM.prototype.interpolate = function (start, end, position) {
   var integer = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
 
+  // testing
   var output = (1 - position) * start + position * end;
   output = integer ? Math.floor(output) : output;
   return output;

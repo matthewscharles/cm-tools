@@ -10,10 +10,6 @@ var CM = function(){
 CM.prototype = {};
 CM.prototype.constructor = CM;
 
-function interpolate(a, b, n) {
-  return ((1 - n) * a) + (n * b);
-}
-
 function notify(...args){
   if (settings.verbose) {
     let message = '';
