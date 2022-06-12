@@ -14,10 +14,18 @@
             "problemMatcher": [],
             "label": "npm: doc",
             "detail": "jsdoc -c jsdoc.json",
+            "group": "build"
+        },
+        {
+            "type": "npm",
+            "script": "build",
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "problemMatcher": [],
+            "label": "npm: build",
+            "detail": "babel src -o js/index.js"
         }
     ]
 }
