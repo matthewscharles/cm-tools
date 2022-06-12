@@ -25,7 +25,7 @@
             },
             "problemMatcher": [],
             "label": "npm: build",
-            "detail": "babel src -o js/index.js"
+            "detail": "babel src -o build/cm-tools.js"
         }
     ]
 }

@@ -1,9 +1,5 @@
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 // External toolbox by Charles Matthews 2022
@@ -12,63 +8,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
  * CM tools
  * @class
  */
-function CM() {}
+var CM = function CM() {};
 
 CM.prototype = {};
 CM.prototype.constructor = CM;
-
-var cm_old = {
-  within: function within() {
-    var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-    var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    var values = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : { left: 0, right: 0, top: 0, bottom: 0 };
-
-    var output = x >= values.left && x <= values.right && y >= values.top && y <= values.bottom;
-    return output;
-  }
-};
-
-cm.createAnimation = function (attribute, events, duration) {
-  var parameters = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-
-  var values = '',
-      times = '';
-  events.forEach(function (_ref, i) {
-    var _ref2 = _slicedToArray(_ref, 2),
-        time = _ref2[0],
-        value = _ref2[1];
-
-    if (parseFloat(time) % 1 == 0) time += '.00';
-    var divider = i < Object.keys(events).length - 1 ? '; ' : '';
-    times += '' + time + divider;
-    values += '' + value + divider;
-  });
-
-  var output = cm.createNS(attribute = 'translate' ? 'animateTransform' : 'animate', {
-    custom: {
-      attributeName: attribute,
-      begin: 'indefinite',
-      repeatCount: '1',
-      dur: duration + 's',
-      fill: 'freeze',
-      keyTimes: times,
-      values: values
-    }
-  });
-  output = Object.assign(output, parameters);
-  return output;
-};
-
-cm.addAnimation = function (element, attribute, events, duration) {
-  var parameters = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
-
-  var domElement = (typeof element === 'undefined' ? 'undefined' : _typeof(element)) == 'object' ? element : document.getElementById(element);
-  // console.log('id' in parameters)
-  if (!('id' in parameters)) parameters['id'] = domElement.id + '_' + attribute;
-  var animation = cm.createAnimation(attribute, events, duration, parameters);
-  domElement.appendChild(animation);
-  return animation;
-};
 
 function interpolate(a, b, n) {
   return (1 - n) * a + n * b;
@@ -175,6 +118,30 @@ function createE(type, attributes) {
   });
   return addr;
 }
+'use strict';
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+/**
+ * 
+ * @param {HTMLElement | string} element object or id of object to find in DOM
+ * @param {string} attribute 
+ * @param {array} events 
+ * @param {number} duration 
+ * @param {object} parameters 
+ * @returns HTMLElement
+ */
+
+CM.prototype.addAnimation = function (element, attribute, events, duration) {
+  var parameters = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
+
+  var domElement = (typeof element === 'undefined' ? 'undefined' : _typeof(element)) == 'object' ? element : document.getElementById(element);
+  // console.log('id' in parameters)
+  if (!('id' in parameters)) parameters['id'] = domElement.id + '_' + attribute;
+  var animation = cm.createAnimation(attribute, events, duration, parameters);
+  domElement.appendChild(animation);
+  return animation;
+};
 "use strict";
 
 /**
@@ -204,6 +171,49 @@ CM.prototype.create = function (type, obj) {
   var element = document.createElement(type);
   this.set(element, obj);
   return element;
+};
+'use strict';
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+/**
+ * 
+ * @param {string} attribute 
+ * @param {array<array<number,number>>} events 
+ * @param {number} duration 
+ * @param {object} parameters 
+ * @returns {HTMLElement}
+ */
+
+CM.prototype.createAnimation = function (attribute, events, duration) {
+    var parameters = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+
+    var values = '',
+        times = '';
+    events.forEach(function (_ref, i) {
+        var _ref2 = _slicedToArray(_ref, 2),
+            time = _ref2[0],
+            value = _ref2[1];
+
+        if (parseFloat(time) % 1 == 0) time += '.00';
+        var divider = i < Object.keys(events).length - 1 ? '; ' : '';
+        times += '' + time + divider;
+        values += '' + value + divider;
+    });
+
+    var output = cm.createNS(attribute = 'translate' ? 'animateTransform' : 'animate', {
+        custom: {
+            attributeName: attribute,
+            begin: 'indefinite',
+            repeatCount: '1',
+            dur: duration + 's',
+            fill: 'freeze',
+            keyTimes: times,
+            values: values
+        }
+    });
+    output = Object.assign(output, parameters);
+    return output;
 };
 "use strict";
 
@@ -450,8 +460,8 @@ CM.prototype.within = function () {
 };
 "use strict";
 
+// testing...
 var cm = new CM();
 
 console.log(cm.map(1.1, 0, 1, 0, 127, false));
 console.log(cm.interpolate(100, 200, 0.5));
-console.log();
