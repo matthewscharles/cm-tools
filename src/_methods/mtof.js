@@ -7,6 +7,6 @@
    */
 
  CM.prototype.mtof = function(num, transpose = 0){
-    sym = Tone.Frequency(num, "midi").transpose(transpose)
+    num = Tone.Frequency(num, "midi").transpose(transpose)
     return Tone.Frequency(num, "midi").toFrequency()
   }

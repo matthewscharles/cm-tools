@@ -161,6 +161,15 @@ CM.prototype.constrain = function (value, min, max) {
  * @param {string} type 
  * @param {object} obj 
  * @returns {object}
+ * @example
+ * let newElement = cm.create('p', {
+ *    innerHTML:'hello world',
+ *    style:{
+ *      'font-size':'16px';
+ *      }
+ *    } 
+ * );
+ * display.appendChild(newElement)
  */
 
 CM.prototype.create = function (type, obj) {
@@ -294,7 +303,7 @@ CM.prototype.map = function (value, x1, y1, x2, y2) {
 CM.prototype.mtof = function (num) {
    var transpose = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
-   sym = Tone.Frequency(num, "midi").transpose(transpose);
+   num = Tone.Frequency(num, "midi").transpose(transpose);
    return Tone.Frequency(num, "midi").toFrequency();
 };
 "use strict";
@@ -448,7 +457,7 @@ CM.prototype.v = function (gain) {
  * @param {number} x 
  * @param {number} y 
  * @param {object<string,number>} values 
- * @returns 
+ * @returns {boolean}
  */
 
 CM.prototype.within = function () {
@@ -464,5 +473,5 @@ CM.prototype.within = function () {
 // testing...
 var cm = new CM();
 
-console.log(cm.map(1.1, 0, 1, 0, 127, false));
-console.log(cm.interpolate(100, 200, 0.5));
+// console.log(cm.map(1.1, 0, 1, 0, 127, false));
+// console.log(cm.interpolate(100, 200, 0.5));
