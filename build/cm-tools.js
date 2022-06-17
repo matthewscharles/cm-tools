@@ -222,6 +222,8 @@ CM.prototype.createAnimation = function (attribute, events, duration) {
 };
 "use strict";
 
+var xmlns = xmlns || "http://www.w3.org/2000/svg";
+
 /**
  * 
  * @param {string} type 
@@ -248,6 +250,33 @@ CM.prototype.ftos = function (frequency) {
 
   sym = Tone.Frequency(frequency).transpose(transpose);
   return Tone.Frequency(frequency).toNote();
+};
+"use strict";
+
+CM.prototype.hexToInt = function (input1) {
+    //string with two digit hex
+    var value = [0, 0];
+    for (var i = 0; i < 2; i++) {
+        console.log(i);
+        console.log(input1.charCodeAt(i));
+        value[i] = input1.charCodeAt(i);
+        console.log(value[i]);
+        value[i] -= value[i] >= 65 ? 55 : 48;
+    }
+    value[0] *= 16;
+    var newValue = value[0] + value[1];
+    return newValue;
+};
+// input / 16 and input % 16
+
+CM.prototype.intToHex = function (input) {
+    var output = [0, 0];
+    output[0] = Math.floor(input / 16);
+    output[1] = input % 16;
+    for (var index in output) {
+        output[index] = output[index] > 9 ? String.fromCharCode(output[index] + 55) : output[index];
+    }
+    return "" + output[0] + output[1];
 };
 "use strict";
 
@@ -468,10 +497,17 @@ CM.prototype.within = function () {
   var output = x >= values.left && x <= values.right && y >= values.top && y <= values.bottom;
   return output;
 };
-"use strict";
+'use strict';
 
 // testing...
 var cm = new CM();
 
 // console.log(cm.map(1.1, 0, 1, 0, 127, false));
 // console.log(cm.interpolate(100, 200, 0.5));
+
+console.log('testing:', cm.hexToInt("ff"));
+
+var output = cm.intToHex(16 + 18 * 1);
+output += '#ff00ff'.substring(1).toUpperCase();
+// document.querySelector("#lineToSend").value = output;
+console.log('colour output', output);
