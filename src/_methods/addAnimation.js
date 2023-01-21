@@ -8,7 +8,7 @@
  * @returns HTMLElement
  */
 
-CM.prototype.addAnimation = function(element,attribute,events,duration,parameters={}){
+function addAnimation(element,attribute,events,duration,parameters={}){
     let domElement = typeof element == 'object' ? element : document.getElementById(element)
     // console.log('id' in parameters)
     if(!('id' in parameters))parameters['id'] = `${domElement.id}_${attribute}`
@@ -16,3 +16,5 @@ CM.prototype.addAnimation = function(element,attribute,events,duration,parameter
     domElement.appendChild(animation);
     return animation
 }
+
+export default addAnimation;
